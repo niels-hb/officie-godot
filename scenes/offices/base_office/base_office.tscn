@@ -20,8 +20,6 @@ layer_1/tile_data = PackedInt32Array()
 
 [node name="Grid" type="Node2D" parent="."]
 
-[node name="Cells" type="Node2D" parent="Grid"]
-visible = false
 
 [node name="Rooms" type="Node2D" parent="Grid"]
 

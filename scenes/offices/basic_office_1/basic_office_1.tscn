@@ -12,6 +12,3 @@ layer_1/tile_data = PackedInt32Array(196608, 0, 5, 262144, 0, 5, 327680, 0, 5, 3
 
 [node name="Grid" parent="." index="3"]
 position = Vector2(32, 160)
-
-[node name="Cells" parent="Grid" index="0"]
-position = Vector2(32, 32)
