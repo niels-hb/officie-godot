@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx07byahb26c6"]
+
+[ext_resource type="Script" path="res://ui/room_selector/room_selector.gd" id="1_ylo8e"]
+
+[node name="RoomSelector" type="CanvasLayer"]
+script = ExtResource("1_ylo8e")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_top = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="AvailableRooms" type="HBoxContainer" parent="Background/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
