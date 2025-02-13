@@ -4,7 +4,7 @@ class_name SpriteTimedState
 @export var texture_on_enter: Texture
 @export var texture_on_exit: Texture
 
-@export_node_path("Sprite2D") var sprite: NodePath
+@export_node_path("Sprite2D") var sprite: NodePath = NodePath()
 @onready var sprite_node: Sprite2D = get_node(sprite)
 
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 	assert(texture_on_enter != null)
 
-	assert(sprite != null)
+	assert(!sprite.is_empty())
 	assert(sprite_node != null)
 
 

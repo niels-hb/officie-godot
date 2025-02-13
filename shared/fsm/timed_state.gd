@@ -1,14 +1,14 @@
 extends State
 class_name TimedState
 
-@export_range(1, 100, 1) var min_time: int
-@export_range(1, 100, 1) var max_time: int
+@export_range(0, 100, 1) var min_time: int
+@export_range(0, 100, 1) var max_time: int
 
-@export_node_path("Range") var state_progress_indicator: NodePath
+@export_node_path("Range") var state_progress_indicator: NodePath = NodePath()
 @onready var _state_progress_indicator_node: Range = get_node(state_progress_indicator)
 
-@export_node_path("State") var next_state: NodePath
-@onready var next_state_node: State = get_node(next_state) if next_state != null else null
+@export_node_path("State") var next_state: NodePath = NodePath()
+@onready var next_state_node: State = null if next_state.is_empty() else get_node(next_state)
 
 var timer: SceneTreeTimer
 var wait_time: float
@@ -18,7 +18,7 @@ func _ready() -> void:
 	assert(min_time > 0)
 	assert(max_time > 0)
 
-	assert(state_progress_indicator != null)
+	assert(!state_progress_indicator.is_empty())
 	assert(_state_progress_indicator_node != null)
 
 

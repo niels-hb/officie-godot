@@ -3,11 +3,14 @@ class_name StateMachine
 
 signal transitioned(state_name: String)
 
-@export_node_path("State") var initial_state: NodePath
+@export_node_path("State") var initial_state: NodePath = NodePath()
 @onready var state: State = get_node(initial_state)
 
 
 func _ready() -> void:
+	assert(!initial_state.is_empty())
+	assert(state != null)
+
 	await owner.ready
 
 	for child: State in get_children():

@@ -1,12 +1,12 @@
 extends State
 class_name InteractiveState
 
-@export_node_path("BaseButton") var interactable: NodePath
+@export_node_path("BaseButton") var interactable: NodePath = NodePath()
 @onready var interactable_node: BaseButton = get_node(interactable)
 
 
 func _ready() -> void:
-	assert(interactable != null)
+	assert(!interactable.is_empty())
 	assert(interactable_node != null)
 
 	var _connect_result: int = interactable_node.pressed.connect(on_interaction)
