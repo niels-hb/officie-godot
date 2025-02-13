@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1as12nk8fxdo"]
+
+[ext_resource type="Texture2D" uid="uid://kn4foo6etrbc" path="res://assets/backgrounds/grid_outline.png" id="1_3tvqk"]
+
+[node name="GridOutline" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("1_3tvqk")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 20.0
+offset_right = 64.0
+offset_bottom = 44.0
+text = "(0, 0)"
+horizontal_alignment = 1
