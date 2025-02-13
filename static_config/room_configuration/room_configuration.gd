@@ -2,6 +2,7 @@ extends Node
 
 const _CONFIG_FILE_PATH: String = "res://static_config/room_configuration/room_configuration.cfg"
 
+const _ROOM_ACTIVE_IDENTIFIER: String = "active"
 const _ROOM_NAME_IDENTIFIER: String = "room_name"
 const _ROOM_PRICE_IDENTIFIER: String = "price"
 const _ROOM_ICON_IDENTIFIER: String = "icon"
@@ -20,9 +21,10 @@ func _ready() -> void:
 		return
 
 	for room: String in room_configuration.get_sections():
+		var room_active: bool = room_configuration.get_value(room, _ROOM_ACTIVE_IDENTIFIER)
 		var room_name: String = room_configuration.get_value(room, _ROOM_NAME_IDENTIFIER)
 		var price: int = room_configuration.get_value(room, _ROOM_PRICE_IDENTIFIER)
 		var icon: String = room_configuration.get_value(room, _ROOM_ICON_IDENTIFIER)
 		var scene: String = room_configuration.get_value(room, _ROOM_SCENE_IDENTIFIER)
 
-		available_rooms.append(Room.new(room_name, price, icon, scene))
+		available_rooms.append(Room.new(room_active, room_name, price, icon, scene))
