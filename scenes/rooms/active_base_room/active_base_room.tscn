@@ -1,7 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnj85wi0hskql"]
+[gd_scene load_steps=5 format=3 uid="uid://cnj85wi0hskql"]
 
 [ext_resource type="PackedScene" uid="uid://cv04v0ei7br1t" path="res://scenes/rooms/base_room/base_room.tscn" id="1_4cn17"]
-[ext_resource type="Script" path="res://scenes/rooms/active_base_room/active_base_room.gd" id="2_k46ye"]
+[ext_resource type="Texture2D" uid="uid://b0f7ugqaq03ex" path="res://assets/icons/money.svg" id="3_te5rl"]
+[ext_resource type="Script" path="res://scenes/rooms/active_base_room/states/collectable.gd" id="5_cgv16"]
+[ext_resource type="Script" path="res://shared/fsm/sprite_timed_state.gd" id="6_u5t22"]
 
 [node name="ActiveBaseRoom" instance=ExtResource("1_4cn17")]
-script = ExtResource("2_k46ye")
+
+[node name="CollectMoneyButton" type="TextureButton" parent="." index="3"]
+visible = false
+offset_right = 24.0
+offset_bottom = 24.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("3_te5rl")
+
+[node name="Ready" parent="StateMachine" index="2"]
+next_state = NodePath("../Occupied")
+
+[node name="Occupied" type="Node" parent="StateMachine" index="3"]
+script = ExtResource("6_u5t22")
+sprite = NodePath("../../Image")
+state_progress_indicator = NodePath("../../StateProgressIndicator")
+next_state = NodePath("../Collectable")
+
+[node name="Collectable" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("5_cgv16")
+interactable = NodePath("../../CollectMoneyButton")
+
+[node name="Dirty" type="Node" parent="StateMachine" index="5"]
+script = ExtResource("6_u5t22")
+sprite = NodePath("../../Image")
+state_progress_indicator = NodePath("../../StateProgressIndicator")
+next_state = NodePath("../Ready")
