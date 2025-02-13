@@ -25,6 +25,8 @@ func _ready() -> void:
 	assert(staff_room != null)
 	assert(staff_room is StaffRoom)
 
+	position = staff_room.position
+
 	call_deferred("_actor_setup")
 
 
