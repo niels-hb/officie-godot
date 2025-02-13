@@ -9,6 +9,13 @@ const TILEMAP_WALL_LAYER: int = 1
 
 const TILEMAP_CDL_BLOCKING: String = "blocking"
 
+@export var draw_debug_cells: bool = false
+
+
+func _ready() -> void:
+	if draw_debug_cells:
+		_create_debug_cells()
+
 
 func _on_room_selector_room_selected(room: Room) -> void:
 	if GameInformation.money < room.price:
@@ -96,3 +103,15 @@ func _filter_null_values(value: Variant) -> bool:
 
 func _is_overlapping(l1: Vector2, r1: Vector2, l2: Vector2, r2: Vector2) -> bool:
 	return l1.x <= r2.x and r1.x >= l2.x and l1.y <= r2.y and r1.y >= l2.y
+
+
+func _create_debug_cells() -> void:
+	const grid_outline: PackedScene = preload("res://scenes/offices/base_office/grid_outline.tscn")
+
+	for i: int in range(-50, 51):
+		for j: int in range(-50, 51):
+			var cell: Node2D = grid_outline.instantiate()
+			cell.position.x = i * GameInformation.GRID_SIZE
+			cell.position.y = j * GameInformation.GRID_SIZE
+			(cell.get_node("Label") as Label).text = "(%d, %d)" % [i, j]
+			$Grid.add_child(cell)
