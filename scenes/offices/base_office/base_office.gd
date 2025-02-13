@@ -1,4 +1,5 @@
 extends Node2D
+class_name BaseOffice
 
 const grid_outline: PackedScene = preload("res://scenes/offices/base_office/grid_outline.tscn")
 
@@ -21,7 +22,7 @@ func _on_room_selector_room_selected(room: Room) -> void:
 	if GameInformation.money < room.price:
 		return
 
-	var base_room: BaseRoom = (room.scene.instantiate() as BaseRoom).init(room)
+	var base_room: BaseRoom = (room.scene.instantiate() as BaseRoom).init(self, room)
 	base_room.position = office_size * GameInformation.GRID_SIZE / 2
 	var _connect_result: int = base_room.drag_state_changed.connect(_on_drag_state_changed)
 

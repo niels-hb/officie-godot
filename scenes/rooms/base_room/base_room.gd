@@ -5,6 +5,7 @@ signal drag_state_changed(dragging: bool)
 
 @onready var collisonShape: CollisionShape2D = $CollisionShape2D
 
+var office: BaseOffice
 var room: Room
 
 var bought: bool = false:
@@ -13,7 +14,8 @@ var bought: bool = false:
 		($BuyControls as Node2D).visible = !value
 
 
-func init(_room: Room) -> BaseRoom:
+func init(_office: BaseOffice, _room: Room) -> BaseRoom:
+	self.office = _office
 	self.room = _room
 
 	return self
