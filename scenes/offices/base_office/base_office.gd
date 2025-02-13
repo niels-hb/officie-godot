@@ -23,7 +23,7 @@ func _on_room_selector_room_selected(room: Room) -> void:
 		return
 
 	var base_room: BaseRoom = (room.scene.instantiate() as BaseRoom).init(self, room)
-	base_room.position = office_size * GameInformation.GRID_SIZE / 2
+	base_room.position = Vector2i(office_size / 2) * GameInformation.GRID_SIZE
 	var _connect_result: int = base_room.drag_state_changed.connect(_on_drag_state_changed)
 
 	$Grid/Rooms.add_child(base_room)
