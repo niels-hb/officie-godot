@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bblub6od8ep18"]
+[gd_scene load_steps=7 format=3 uid="uid://bblub6od8ep18"]
 
 [ext_resource type="PackedScene" uid="uid://cnj85wi0hskql" path="res://scenes/rooms/active_base_room/active_base_room.tscn" id="1_we34l"]
 [ext_resource type="Texture2D" uid="uid://328jc0s445me" path="res://assets/rooms/hot_desks/hot_desk_1.png" id="2_s72ps"]
+[ext_resource type="Texture2D" uid="uid://dmhvcq8dsasej" path="res://assets/rooms/hot_desks/hot_desk_1_building.png" id="3_litum"]
+[ext_resource type="Texture2D" uid="uid://bi5rr2gea2ncn" path="res://assets/rooms/hot_desks/hot_desk_1_occupied.png" id="3_qnmsi"]
+[ext_resource type="Texture2D" uid="uid://dwv7cet4ful7k" path="res://assets/rooms/hot_desks/hot_desk_1_dirty.png" id="5_arvva"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnae5"]
 size = Vector2(384, 512)
@@ -27,5 +30,38 @@ offset_bottom = -328.0
 offset_top = -352.0
 offset_bottom = -328.0
 
-[node name="Sprite2D" parent="." index="2"]
+[node name="Image" parent="." index="2"]
 texture = ExtResource("2_s72ps")
+
+[node name="CollectMoneyButton" parent="." index="3"]
+offset_left = -60.0
+offset_top = -388.0
+offset_right = -36.0
+offset_bottom = -364.0
+
+[node name="StateProgressIndicator" parent="." index="4"]
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 1001.0
+offset_bottom = 1001.0
+
+[node name="Building" parent="StateMachine" index="1"]
+texture_on_enter = ExtResource("3_litum")
+min_time = 10
+max_time = 20
+
+[node name="Ready" parent="StateMachine" index="2"]
+texture_on_enter = ExtResource("2_s72ps")
+min_time = 2
+max_time = 10
+
+[node name="Occupied" parent="StateMachine" index="3"]
+texture_on_enter = ExtResource("3_qnmsi")
+texture_on_exit = ExtResource("5_arvva")
+min_time = 10
+max_time = 60
+
+[node name="Dirty" parent="StateMachine" index="5"]
+texture_on_enter = ExtResource("5_arvva")
+min_time = 2
+max_time = 4
