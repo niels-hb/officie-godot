@@ -9,7 +9,7 @@ const ROOM_INCOME_PER_DAY_DENTIFIER: String = "income_per_day"
 const ROOM_ICON_IDENTIFIER: String = "icon"
 const ROOM_SCENE_IDENTIFIER: String = "scene"
 
-var available_rooms: Array = []
+var available_rooms: Array[Room] = []
 
 
 func _ready() -> void:

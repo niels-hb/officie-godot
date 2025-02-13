@@ -86,8 +86,10 @@ func is_room_overlapping_existing_room(new_room: BaseRoom) -> bool:
 	return false
 
 
-func get_tiles_in_area(layers: Array, area_position: Vector2i, area_size: Vector2i) -> Array:
-	var tiles: Array = []
+func get_tiles_in_area(
+	layers: Array[int], area_position: Vector2i, area_size: Vector2i
+) -> Array[TileData]:
+	var tiles: Array[TileData] = []
 
 	for i: int in range(area_position.x, area_position.x + area_size.x):
 		for j: int in range(area_position.y, area_position.y + area_size.y):
