@@ -50,11 +50,11 @@ func _on_drag_state_changed(dragging: bool) -> void:
 
 
 func _on_dragging() -> void:
-	var _global_mouse_position: Vector2 = get_global_mouse_position()
-	var _base_offset: float = GameInformation.GRID_SIZE / 2.0
-	var _grid_offset: Vector2 = Vector2(
-		(int(_global_mouse_position.x) % GameInformation.GRID_SIZE) - _base_offset,
-		(int(_global_mouse_position.y) % GameInformation.GRID_SIZE) - _base_offset
+	var global_mouse_position: Vector2 = get_global_mouse_position()
+	var base_grid_offset: float = GameInformation.GRID_SIZE / 2.0
+	var snap_to_grid_offset: Vector2 = Vector2(
+		(int(global_mouse_position.x) % GameInformation.GRID_SIZE) - base_grid_offset,
+		(int(global_mouse_position.y) % GameInformation.GRID_SIZE) - base_grid_offset
 	)
 
-	global_position = _global_mouse_position - _grid_offset
+	global_position = global_mouse_position - snap_to_grid_offset
