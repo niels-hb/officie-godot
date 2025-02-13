@@ -1,16 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://3c35bn7ceae0"]
+[gd_scene load_steps=11 format=3 uid="uid://3c35bn7ceae0"]
 
 [ext_resource type="Script" path="res://scenes/offices/base_office/base_office.gd" id="1_6wtcs"]
 [ext_resource type="PackedScene" uid="uid://d3qvm01a0kv4s" path="res://ui/main/main.tscn" id="1_mw244"]
 [ext_resource type="PackedScene" uid="uid://dx07byahb26c6" path="res://ui/room_selector/room_selector.tscn" id="2_15blh"]
+[ext_resource type="PackedScene" uid="uid://bmwiyhj7h4j58" path="res://ui/bottom_bar/bottom_bar.tscn" id="4_im82i"]
 [ext_resource type="PackedScene" path="res://addons/GestureControlledCamera2D/GCC2D.tscn" id="4_vitfb"]
+[ext_resource type="Animation" uid="uid://chvbroraoom63" path="res://scenes/offices/base_office/animations/slide_in_bottom_bar.res" id="6_8wnx4"]
+[ext_resource type="PackedScene" uid="uid://fp4rcctjv6hb" path="res://ui/room_placement_controls/room_placement_controls.tscn" id="6_eml6e"]
+[ext_resource type="Animation" uid="uid://kbdtsb22umxc" path="res://scenes/offices/base_office/animations/slide_in_room_placement_controls.res" id="7_g6sm5"]
+[ext_resource type="Animation" uid="uid://duwf227jddxl" path="res://scenes/offices/base_office/animations/slide_in_room_selector.res" id="8_tsfym"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mtat1"]
+_data = {
+"slide_in_bottom_bar": ExtResource("6_8wnx4"),
+"slide_in_room_placement_controls": ExtResource("7_g6sm5"),
+"slide_in_room_selector": ExtResource("8_tsfym")
+}
 
 [node name="BaseOffice" type="Node2D"]
 script = ExtResource("1_6wtcs")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mtat1")
+}
+autoplay = "slide_in_bottom_bar"
+
 [node name="Main" parent="." instance=ExtResource("1_mw244")]
 
+[node name="BottomBar" parent="." instance=ExtResource("4_im82i")]
+offset = Vector2(2.08165e-12, 200)
+transform = Transform2D(1, 0, 0, 1, 2.08165e-12, 200)
+
+[node name="RoomPlacementControls" parent="." instance=ExtResource("6_eml6e")]
+visible = false
+offset = Vector2(2.08165e-12, 200)
+transform = Transform2D(1, 0, 0, 1, 2.08165e-12, 200)
+
 [node name="RoomSelector" parent="." instance=ExtResource("2_15blh")]
+visible = false
+offset = Vector2(2.08165e-12, 2250)
+transform = Transform2D(1, 0, 0, 1, 2.08165e-12, 2250)
 
 [node name="Grid" type="Node2D" parent="."]
 
@@ -27,4 +57,8 @@ position = Vector2(640, 1280)
 MAX_ZOOM = 1.5
 MIN_ZOOM = 0.75
 
+[connection signal="store_selected" from="BottomBar" to="." method="_open_room_selector"]
+[connection signal="cancel" from="RoomPlacementControls" to="." method="_on_room_placement_controls_cancel"]
+[connection signal="confirm" from="RoomPlacementControls" to="." method="_on_room_placement_controls_confirm"]
+[connection signal="closed" from="RoomSelector" to="." method="_close_room_selector"]
 [connection signal="room_selected" from="RoomSelector" to="." method="_on_room_selector_room_selected"]

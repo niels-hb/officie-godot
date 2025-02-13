@@ -3,6 +3,10 @@ class_name BaseOffice
 
 @onready var camera: GestureControlledCamera2D = $Camera
 @onready var tile_map: TileMap = $Grid/TileMap
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var room_selector: RoomSelector = $RoomSelector
+@onready var bottom_bar: BottomBar = $BottomBar
+@onready var room_placement_controls: RoomPlacementControls = $RoomPlacementControls
 
 const TILEMAP_FLOOR_LAYER: int = 0
 const TILEMAP_WALL_LAYER: int = 1
@@ -13,21 +17,69 @@ const TILEMAP_CDL_BLOCKING: String = "blocking"
 
 @onready var rooms: Node2D = $Grid/Rooms
 
+var selected_room: BaseRoom
+
 
 func _ready() -> void:
 	if draw_debug_cells:
 		_create_debug_cells()
 
 
-func _on_room_selector_room_selected(room: Room) -> void:
-	if GameInformation.money < room.price:
+func _on_room_selector_room_selected(room_scene: PackedScene) -> void:
+	await _close_room_selector()
+	await _show_room_placement_controls()
+
+	selected_room = room_scene.instantiate()
+	selected_room.office = self
+	selected_room.position = Vector2i(10, 20) * GameInformation.GRID_SIZE
+	var _connect_result: int = selected_room.drag_state_changed.connect(_on_drag_state_changed)
+
+	$Grid/Rooms.add_child(selected_room)
+
+
+func _open_room_selector() -> void:
+	room_selector.visible = true
+	animation_player.play("slide_in_room_selector")
+
+
+func _close_room_selector() -> void:
+	animation_player.play_backwards("slide_in_room_selector")
+	await animation_player.animation_finished
+	room_selector.visible = false
+
+
+func _show_room_placement_controls() -> void:
+	animation_player.play_backwards("slide_in_bottom_bar")
+	await animation_player.animation_finished
+	bottom_bar.visible = false
+
+	room_placement_controls.visible = true
+	animation_player.play("slide_in_room_placement_controls")
+
+
+func _hide_room_placement_controls() -> void:
+	animation_player.play_backwards("slide_in_room_placement_controls")
+	await animation_player.animation_finished
+	room_placement_controls.visible = false
+
+	bottom_bar.visible = true
+	animation_player.play("slide_in_bottom_bar")
+
+
+func _on_room_placement_controls_confirm() -> void:
+	if !validate_room_position(selected_room) or GameInformation.money < selected_room.price:
 		return
 
-	var base_room: BaseRoom = (room.scene.instantiate() as BaseRoom).init(self, room)
-	base_room.position = Vector2i(10, 20) * GameInformation.GRID_SIZE
-	var _connect_result: int = base_room.drag_state_changed.connect(_on_drag_state_changed)
+	selected_room.state_machine.transition_to("Building")
+	GameInformation.money -= selected_room.price
+	_hide_room_placement_controls()
 
-	$Grid/Rooms.add_child(base_room)
+
+func _on_room_placement_controls_cancel() -> void:
+	$Grid/Rooms.remove_child(selected_room)
+	selected_room = null
+
+	_hide_room_placement_controls()
 
 
 func _on_drag_state_changed(dragging: bool) -> void:
