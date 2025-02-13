@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://fp4rcctjv6hb"]
+[gd_scene load_steps=5 format=3 uid="uid://fp4rcctjv6hb"]
 
 [ext_resource type="Script" path="res://ui/room_placement_controls/room_placement_controls.gd" id="1_kxjoe"]
-[ext_resource type="Texture2D" uid="uid://b73rn0huqgao0" path="res://assets/icons/check.svg" id="1_tt1qr"]
+[ext_resource type="Texture2D" uid="uid://b73rn0huqgao0" path="res://assets/icons/check/check.svg" id="1_tt1qr"]
 [ext_resource type="Texture2D" uid="uid://84fmkmc4wmcd" path="res://assets/icons/close.svg" id="2_l7g15"]
+[ext_resource type="Texture2D" uid="uid://c63abh53330x6" path="res://assets/icons/check/check_disabled.svg" id="4_xkeks"]
 
 [node name="RoomPlacementControls" type="CanvasLayer"]
 script = ExtResource("1_kxjoe")
@@ -18,19 +19,6 @@ grow_vertical = 0
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="OkMarginContainer" type="MarginContainer" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="OkButton" type="TextureButton" parent="HBoxContainer/OkMarginContainer"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-texture_normal = ExtResource("1_tt1qr")
-stretch_mode = 0
-
 [node name="CancelMarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
@@ -44,5 +32,19 @@ layout_mode = 2
 texture_normal = ExtResource("2_l7g15")
 stretch_mode = 0
 
-[connection signal="pressed" from="HBoxContainer/OkMarginContainer/OkButton" to="." method="_on_ok_button_pressed"]
+[node name="OkMarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="OkButton" type="TextureButton" parent="HBoxContainer/OkMarginContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("1_tt1qr")
+texture_disabled = ExtResource("4_xkeks")
+stretch_mode = 0
+
 [connection signal="pressed" from="HBoxContainer/CancelMarginContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/OkMarginContainer/OkButton" to="." method="_on_ok_button_pressed"]
