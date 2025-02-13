@@ -11,18 +11,19 @@ signal drag_state_changed(dragging: bool)
 var office: BaseOffice
 var room: Room
 
-var grid_position: Vector2i:
+var grid_start_position: Vector2i:
 	get:
 		return office.tile_map.local_to_map(
 			position - (collison_shape.shape as RectangleShape2D).size / 2
 		)
 
+var grid_end_position: Vector2i:
+	get:
+		return grid_start_position + grid_size - Vector2i(1, 1)
+
 var grid_size: Vector2i:
 	get:
-		return (
-			((collison_shape.shape as RectangleShape2D).size / GameInformation.GRID_SIZE)
-			- Vector2(1, 1)
-		)
+		return (collison_shape.shape as RectangleShape2D).size / GameInformation.GRID_SIZE
 
 
 func init(_office: BaseOffice, _room: Room) -> BaseRoom:
@@ -77,7 +78,7 @@ func _on_dragging() -> void:
 
 func _validate_position() -> bool:
 	return (
-		office.is_floor_covering_area(grid_position, grid_size)
-		and !office.is_blocking_tile_within_area(grid_position, grid_size)
+		office.is_floor_covering_area(grid_start_position, grid_size)
+		and !office.is_blocking_tile_within_area(grid_start_position, grid_size)
 		and !office.is_room_overlapping_existing_room(self)
 	)

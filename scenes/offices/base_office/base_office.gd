@@ -69,10 +69,10 @@ func is_room_overlapping_existing_room(new_room: BaseRoom) -> bool:
 		assert(existing_room is BaseRoom)
 
 		if _is_overlapping(
-			existing_room.grid_position,
-			existing_room.grid_position + existing_room.grid_size,
-			new_room.grid_position,
-			new_room.grid_position + new_room.grid_size,
+			existing_room.grid_start_position,
+			existing_room.grid_start_position + existing_room.grid_size,
+			new_room.grid_start_position,
+			new_room.grid_start_position + new_room.grid_size,
 		):
 			return true
 
