@@ -13,21 +13,6 @@ staff_preset_scene = ExtResource("2_lvdqr")
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_8mv70")
 
-[node name="ColorRect" parent="BuyControls" index="0"]
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-
-[node name="OkButton" parent="BuyControls" index="1"]
-offset_top = 256.0
-offset_bottom = 280.0
-
-[node name="CancelButton" parent="BuyControls" index="2"]
-offset_left = -96.0
-offset_top = 256.0
-offset_right = -72.0
-offset_bottom = 280.0
 
 [node name="Image" parent="." index="2"]
 scale = Vector2(0.5, 0.5)

@@ -15,24 +15,6 @@ script = ExtResource("1_hityr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="BuyControls" type="Node2D" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="BuyControls"]
-mouse_filter = 2
-color = Color(1, 1, 1, 0.5)
-
-[node name="OkButton" type="TextureButton" parent="BuyControls"]
-offset_right = 24.0
-offset_bottom = 24.0
-scale = Vector2(4, 4)
-texture_normal = ExtResource("2_lhv7j")
-
-[node name="CancelButton" type="TextureButton" parent="BuyControls"]
-offset_right = 24.0
-offset_bottom = 24.0
-scale = Vector2(4, 4)
-texture_normal = ExtResource("3_oq3wp")
-
 [node name="Image" type="Sprite2D" parent="."]
 
 [node name="StateProgressIndicator" type="TextureProgressBar" parent="."]
@@ -65,5 +47,3 @@ sprite = NodePath("../../Image")
 state_progress_indicator = NodePath("../../StateProgressIndicator")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="pressed" from="BuyControls/OkButton" to="." method="_on_ok_button_pressed"]
-[connection signal="pressed" from="BuyControls/CancelButton" to="." method="_on_cancel_button_pressed"]

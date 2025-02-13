@@ -14,21 +14,7 @@ size = Vector2(384, 512)
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_mnae5")
 
-[node name="ColorRect" parent="BuyControls" index="0"]
-offset_left = -192.0
-offset_top = -256.0
-offset_right = 192.0
-offset_bottom = 256.0
 
-[node name="OkButton" parent="BuyControls" index="1"]
-offset_top = 260.0
-offset_bottom = 284.0
-
-[node name="CancelButton" parent="BuyControls" index="2"]
-offset_left = -96.0
-offset_top = 260.0
-offset_right = -72.0
-offset_bottom = 284.0
 
 [node name="Image" parent="." index="2"]
 texture = ExtResource("2_s72ps")
