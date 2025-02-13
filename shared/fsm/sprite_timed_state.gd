@@ -4,7 +4,7 @@ class_name SpriteTimedState
 @export var texture_on_enter: Texture
 @export var texture_on_exit: Texture
 
-@export var sprite: NodePath
+@export_node_path("Sprite2D") var sprite: NodePath
 @onready var sprite_node: Sprite2D = get_node(sprite)
 
 

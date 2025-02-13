@@ -3,7 +3,7 @@ class_name StateMachine
 
 signal transitioned(state_name: String)
 
-@export var initial_state: NodePath
+@export_node_path("State") var initial_state: NodePath
 @onready var state: State = get_node(initial_state)
 
 

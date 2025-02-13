@@ -1,7 +1,7 @@
 extends State
 class_name InteractiveState
 
-@export var interactable: NodePath
+@export_node_path("BaseButton") var interactable: NodePath
 @onready var interactable_node: BaseButton = get_node(interactable)
 
 
