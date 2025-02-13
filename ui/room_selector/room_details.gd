@@ -28,7 +28,7 @@ var room_maintenance_value: Label = $HBoxContainer/VBoxContainer/GeneralInformat
 
 @onready var buy_button: Button = $BuyButton
 
-signal selected(room: BaseRoom)
+signal selected(room_scene: PackedScene)
 
 
 func _ready() -> void:
@@ -74,7 +74,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_buy_button_pressed() -> void:
-	selected.emit(room)
+	selected.emit(room_scene)
 
 
 func _format_recurring_expense(expense: int) -> String:
