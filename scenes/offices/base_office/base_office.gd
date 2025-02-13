@@ -4,11 +4,13 @@ const grid_outline: PackedScene = preload("res://scenes/offices/base_office/grid
 
 @onready var camera: GestureControlledCamera2D = $Camera
 
+# TODO: Dynamic row/column count based on office floor plan
+var office_size: Vector2 = Vector2(19, 33)
+
 
 func _ready() -> void:
-	# TODO: Dynamic row/column count based on office floor plan
-	for i: int in range(0, 19):
-		for j: int in range(0, 33):
+	for i: int in range(0, office_size.x):
+		for j: int in range(0, office_size.y):
 			var cell: Node2D = grid_outline.instantiate()
 			cell.position.x = i * GameInformation.GRID_SIZE
 			cell.position.y = j * GameInformation.GRID_SIZE
@@ -20,6 +22,7 @@ func _on_room_selector_room_selected(room: Room) -> void:
 		return
 
 	var base_room: BaseRoom = (room.scene.instantiate() as BaseRoom).init(room)
+	base_room.position = office_size * GameInformation.GRID_SIZE / 2
 	var _connect_result: int = base_room.drag_state_changed.connect(_on_drag_state_changed)
 
 	$Grid/Rooms.add_child(base_room)
