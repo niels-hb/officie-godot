@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cun8wk0weipg3" path="res://assets/components/circular_progress_bar.svg" id="8_whj1j"]
 
 [node name="BaseRoom" type="Area2D"]
+collision_layer = 2
+collision_mask = 8
 script = ExtResource("1_hityr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
