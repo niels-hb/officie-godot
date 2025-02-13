@@ -13,3 +13,20 @@
 - Cleaning as manual action, later the player has the option to hire cleaning staff but costs currency each month
 - Manually collect money from customers in the beginning, automate later (e.g. hire an accountant)
 - Moving/removing rooms costs currency
+
+## Rooms
+- Hot Desk
+- Dedicated Desk
+- Studio
+- Cleaning Room
+- Reception
+- Storage
+- Restroom
+- Meeting Room
+- Phone Booth
+- Nursing Room
+- Sleeping Booth
+- Lounge
+- Kitchen
+- Storage Lockers
+- Printer
