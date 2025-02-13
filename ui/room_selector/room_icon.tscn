@@ -5,8 +5,7 @@
 
 [node name="RoomIcon" type="VBoxContainer"]
 offset_right = 256.0
-offset_bottom = 362.0
-alignment = 1
+offset_bottom = 370.0
 script = ExtResource("1_l46da")
 
 [node name="Icon" type="TextureRect" parent="."]
@@ -21,7 +20,10 @@ theme_override_font_sizes/font_size = 32
 text = "PLACEHOLDER"
 horizontal_alignment = 1
 
-[node name="BuyButton" type="Button" parent="."]
+[node name="Price" type="Label" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "$X"
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_pressed"]

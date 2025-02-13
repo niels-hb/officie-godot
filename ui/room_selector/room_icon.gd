@@ -3,6 +3,8 @@ class_name RoomIcon
 
 var room: Room
 
+signal selected(room: Room)
+
 
 func init(_room: Room) -> RoomIcon:
 	self.room = _room
@@ -13,4 +15,9 @@ func init(_room: Room) -> RoomIcon:
 func _ready() -> void:
 	($Icon as TextureRect).texture = load(room.icon)
 	($Name as Label).text = room.name
-	($BuyButton as Button).text = "$%d" % room.price
+	($Price as Label).text = "$%d" % room.price
+
+
+func _on_pressed(event: InputEvent) -> void:
+	if event is InputEventScreenTouch and (event as InputEventScreenTouch).pressed:
+		selected.emit(room)
