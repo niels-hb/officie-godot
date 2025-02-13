@@ -31,7 +31,12 @@ func _on_room_selector_room_selected(room: Room) -> void:
 
 
 func _on_drag_state_changed(dragging: bool) -> void:
+	_update_room_placement_controls()
 	_toggle_camera_movement(dragging)
+
+
+func _update_room_placement_controls() -> void:
+	room_placement_controls.set_confirm_button(!validate_room_position(selected_room))
 
 
 func _toggle_camera_movement(disabled: bool) -> void:
