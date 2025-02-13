@@ -6,6 +6,7 @@ signal drag_state_changed(dragging: bool)
 @onready var collison_shape: CollisionShape2D = $CollisionShape2D
 @onready var image: Sprite2D = $Image
 @onready var state_machine: StateMachine = $StateMachine
+@onready var room_animation_player: AnimationPlayer = $RoomAnimationPlayer
 
 var office: BaseOffice
 var room: Room

@@ -1,17 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://cv04v0ei7br1t"]
+[gd_scene load_steps=9 format=3 uid="uid://cv04v0ei7br1t"]
 
 [ext_resource type="Script" path="res://scenes/rooms/base_room/base_room.gd" id="1_hityr"]
-[ext_resource type="Texture2D" uid="uid://b73rn0huqgao0" path="res://assets/icons/check.svg" id="2_lhv7j"]
-[ext_resource type="Texture2D" uid="uid://84fmkmc4wmcd" path="res://assets/icons/close.svg" id="3_oq3wp"]
+[ext_resource type="Animation" uid="uid://dhfqjs8dlk4i6" path="res://scenes/rooms/base_room/animations/pulse_inactive_room.res" id="2_64a3t"]
+[ext_resource type="Animation" uid="uid://c1eisaaoejb2o" path="res://scenes/rooms/base_room/animations/fade_in_inactive_room.res" id="2_b137u"]
 [ext_resource type="Script" path="res://shared/fsm/state_machine.gd" id="4_x4ccm"]
 [ext_resource type="Script" path="res://scenes/rooms/base_room/states/inactive.gd" id="5_sqyng"]
 [ext_resource type="Script" path="res://shared/fsm/sprite_timed_state.gd" id="7_ewvry"]
 [ext_resource type="Texture2D" uid="uid://cun8wk0weipg3" path="res://assets/components/circular_progress_bar.svg" id="8_whj1j"]
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u5xbe"]
+_data = {
+"fade_in_inactive_room": ExtResource("2_b137u"),
+"pulse_inactive_room": ExtResource("2_64a3t")
+}
+
 [node name="BaseRoom" type="Area2D"]
+scale = Vector2(1e-05, 1e-05)
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_hityr")
+
+[node name="RoomAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u5xbe")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
