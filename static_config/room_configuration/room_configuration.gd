@@ -26,9 +26,11 @@ func _ready() -> void:
 		if !room_active:
 			continue
 
-		var room_name: String = room_configuration.get_value(room, ROOM_NAME_IDENTIFIER)
-		var price: int = room_configuration.get_value(room, ROOM_PRICE_IDENTIFIER)
-		var income_per_day: int = room_configuration.get_value(room, ROOM_INCOME_PER_DAY_DENTIFIER)
+		var room_name: String = room_configuration.get_value(room, ROOM_NAME_IDENTIFIER, "N/A")
+		var price: int = room_configuration.get_value(room, ROOM_PRICE_IDENTIFIER, 0)
+		var income_per_day: int = room_configuration.get_value(
+			room, ROOM_INCOME_PER_DAY_DENTIFIER, 0
+		)
 		var icon: String = room_configuration.get_value(room, ROOM_ICON_IDENTIFIER)
 		var scene: String = room_configuration.get_value(room, ROOM_SCENE_IDENTIFIER)
 
