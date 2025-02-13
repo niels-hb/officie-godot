@@ -26,6 +26,8 @@ var room_maintenance: VBoxContainer = $HBoxContainer/VBoxContainer/GeneralInform
 @onready
 var room_maintenance_value: Label = $HBoxContainer/VBoxContainer/GeneralInformation/Maintenance/Value
 
+@onready var buy_button: Button = $BuyButton
+
 signal selected(room: BaseRoom)
 
 
@@ -65,6 +67,10 @@ func _ready() -> void:
 		room_maintenance_value.text = _format_recurring_expense(
 			(room as StaffRoom).maintenance_per_day
 		)
+
+
+func _process(_delta: float) -> void:
+	buy_button.disabled = GameInformation.money < room.price
 
 
 func _on_buy_button_pressed() -> void:
