@@ -13,6 +13,8 @@ func init(_room: Room) -> RoomIcon:
 
 
 func _ready() -> void:
+	assert(room != null)
+
 	($Icon as TextureRect).texture = load(room.icon)
 	($Name as Label).text = room.name
 	($Price as Label).text = "$%d" % room.price
