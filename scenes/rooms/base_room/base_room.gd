@@ -19,7 +19,10 @@ var grid_position: Vector2i:
 
 var grid_size: Vector2i:
 	get:
-		return (collison_shape.shape as RectangleShape2D).size / GameInformation.GRID_SIZE
+		return (
+			((collison_shape.shape as RectangleShape2D).size / GameInformation.GRID_SIZE)
+			- Vector2(1, 1)
+		)
 
 
 func init(_office: BaseOffice, _room: Room) -> BaseRoom:
