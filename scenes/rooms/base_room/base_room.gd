@@ -30,7 +30,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 
 func _on_ok_button_pressed() -> void:
-	if GameInformation.money < room.price:
+	if !_validate_position() || GameInformation.money < room.price:
 		return
 
 	GameInformation.money -= room.price
@@ -58,3 +58,11 @@ func _on_dragging() -> void:
 	)
 
 	global_position = global_mouse_position - snap_to_grid_offset
+
+	($BuyControls/ColorRect as ColorRect).modulate = (
+		Color(1, 1, 1, 0.5) if _validate_position() else Color(1, 0, 0, 1)
+	)
+
+
+func _validate_position() -> bool:
+	return true
