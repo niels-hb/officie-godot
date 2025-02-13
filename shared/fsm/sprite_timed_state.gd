@@ -11,10 +11,10 @@ class_name SpriteTimedState
 func _ready() -> void:
 	super._ready()
 
-	assert(texture_on_enter != null)
+	assert(texture_on_enter != null, "texture_on_enter must not be null.")
 
-	assert(!sprite.is_empty())
-	assert(sprite_node != null)
+	assert(!sprite.is_empty(), "sprite must not be empty.")
+	assert(sprite_node != null, "sprite node path is invalid.")
 
 
 func enter(_msg: Dictionary = {}) -> void:

@@ -8,8 +8,8 @@ signal transitioned(state_name: String)
 
 
 func _ready() -> void:
-	assert(!initial_state.is_empty())
-	assert(state != null)
+	assert(!initial_state.is_empty(), "initial_state must not be empty.")
+	assert(state != null, "initial_state node path is invalid.")
 
 	call_deferred("_state_setup")
 
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 
 
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
-	assert(has_node(target_state_name))
+	assert(has_node(target_state_name), "target_state_name does not exist.")
 
 	print("[%s] %s -> %s" % [owner, state, target_state_name])
 

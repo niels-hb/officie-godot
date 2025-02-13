@@ -15,11 +15,11 @@ var wait_time: float
 
 
 func _ready() -> void:
-	assert(min_time > 0)
-	assert(max_time > 0)
+	assert(min_time > 0, "min_time must be greater than 0.")
+	assert(max_time > 0, "max_time must be greater than 0.")
 
-	assert(!state_progress_indicator.is_empty())
-	assert(_state_progress_indicator_node != null)
+	assert(!state_progress_indicator.is_empty(), "state_progress_indicator must not be empty.")
+	assert(_state_progress_indicator_node != null, "state_progress_indicator node path is invalid.")
 
 
 func enter(_msg: Dictionary = {}) -> void:

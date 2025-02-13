@@ -4,7 +4,7 @@ extends State
 
 
 func _ready() -> void:
-	assert(cleaning_time > 0)
+	assert(cleaning_time > 0, "cleaning_time must be greater than 0.")
 
 
 func _on_body_entered(body: Node2D) -> void:

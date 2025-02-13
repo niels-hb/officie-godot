@@ -6,8 +6,8 @@ var income: int
 func enter(_msg: Dictionary = {}) -> void:
 	super.enter(_msg)
 
-	assert(_msg.has("wait_time"))
-	assert(_msg.wait_time is float)
+	assert(_msg.has("wait_time"), "wait_time must be passed from previous state.")
+	assert(_msg.wait_time is float, "wait_time must be of type float.")
 
 	@warning_ignore("unsafe_cast")
 	var occupation_time: float = roundi(_msg.wait_time as float)

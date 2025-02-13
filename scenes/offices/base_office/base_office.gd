@@ -75,7 +75,7 @@ func is_room_overlapping_existing_room(new_room: BaseRoom) -> bool:
 		if existing_room == new_room:
 			continue
 
-		assert(existing_room is BaseRoom)
+		assert(existing_room is BaseRoom, "existing_room must be of type BaseRoom.")
 
 		if _is_overlapping(
 			existing_room.grid_start_position,

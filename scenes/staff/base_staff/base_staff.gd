@@ -21,9 +21,9 @@ func init(_staff_room: StaffRoom) -> BaseStaff:
 
 
 func _ready() -> void:
-	assert(!assignable_states.is_empty())
-	assert(staff_room != null)
-	assert(staff_room is StaffRoom)
+	assert(!assignable_states.is_empty(), "Staff must have assignable_states.")
+	assert(staff_room != null, "Staff must have owning staff_room.")
+	assert(staff_room is StaffRoom, "Owning staff_room must be of type StaffRoom.")
 
 	position = staff_room.position
 

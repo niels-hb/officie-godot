@@ -6,8 +6,8 @@ class_name InteractiveState
 
 
 func _ready() -> void:
-	assert(!interactable.is_empty())
-	assert(interactable_node != null)
+	assert(!interactable.is_empty(), "interactable must not be empty.")
+	assert(interactable_node != null, "interactable node path is invalid.")
 
 	var _connect_result: int = interactable_node.pressed.connect(on_interaction)
 
