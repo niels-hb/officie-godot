@@ -7,6 +7,9 @@ class_name TimedState
 @export var state_progress_indicator: NodePath
 @onready var _state_progress_indicator_node: Range = get_node(state_progress_indicator)
 
+@export var next_state: NodePath
+@onready var next_state_node: State = get_node(next_state) if next_state != null else null
+
 var timer: SceneTreeTimer
 var wait_time: float
 
@@ -31,6 +34,9 @@ func enter(_msg: Dictionary = {}) -> void:
 	_state_progress_indicator_node.max_value = wait_time
 
 	await timer.timeout
+
+	if next_state_node != null:
+		state_machine.transition_to(next_state_node.name)
 
 
 func update(delta: float) -> void:
