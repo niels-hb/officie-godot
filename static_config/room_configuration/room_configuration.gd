@@ -4,7 +4,6 @@ const CONFIG_FILE_PATH: String = "res://static_config/room_configuration/room_co
 
 const ROOM_ACTIVE_IDENTIFIER: String = "active"
 const ROOM_NAME_IDENTIFIER: String = "room_name"
-const ROOM_SIZE_IDENTIFIER: String = "size"
 const ROOM_PRICE_IDENTIFIER: String = "price"
 const ROOM_INCOME_PER_DAY_DENTIFIER: String = "income_per_day"
 const ROOM_ICON_IDENTIFIER: String = "icon"
@@ -28,10 +27,9 @@ func _ready() -> void:
 			continue
 
 		var room_name: String = room_configuration.get_value(room, ROOM_NAME_IDENTIFIER)
-		var room_size: Vector2i = room_configuration.get_value(room, ROOM_SIZE_IDENTIFIER)
 		var price: int = room_configuration.get_value(room, ROOM_PRICE_IDENTIFIER)
 		var income_per_day: int = room_configuration.get_value(room, ROOM_INCOME_PER_DAY_DENTIFIER)
 		var icon: String = room_configuration.get_value(room, ROOM_ICON_IDENTIFIER)
 		var scene: String = room_configuration.get_value(room, ROOM_SCENE_IDENTIFIER)
 
-		available_rooms.append(Room.new(room_name, room_size, price, income_per_day, icon, scene))
+		available_rooms.append(Room.new(room_name, price, income_per_day, icon, scene))
