@@ -8,10 +8,7 @@ signal drag_state_changed(dragging: bool)
 var office: BaseOffice
 var room: Room
 
-var bought: bool = false:
-	set(value):
-		bought = value
-		($BuyControls as Node2D).visible = !value
+var bought: bool = false
 
 
 func init(_office: BaseOffice, _room: Room) -> BaseRoom:
@@ -36,8 +33,8 @@ func _on_ok_button_pressed() -> void:
 		return
 
 	GameInformation.money -= room.price
-
 	bought = true
+	($BuyControls as Node2D).visible = false
 
 
 func _on_cancel_button_pressed() -> void:
