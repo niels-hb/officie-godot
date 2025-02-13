@@ -4,10 +4,6 @@ var name: String
 var size: Vector2i
 var price: int
 var income_per_day: int
-var time_to_build: Vector2i
-var time_until_occupied: Vector2i
-var time_until_collectable: Vector2i
-var time_until_cleaned: Vector2i
 var icon: String
 var scene: PackedScene
 
