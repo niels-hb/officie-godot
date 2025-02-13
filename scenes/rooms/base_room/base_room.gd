@@ -43,8 +43,8 @@ func _on_cancel_button_pressed() -> void:
 
 
 func _on_drag_state_changed(dragging: bool) -> void:
-	var _scale: float = 4.0 if dragging else 1.0
-	collisonShape.scale = Vector2(_scale, _scale)
+	var scale_while_dragging: float = 4.0 if dragging else 1.0
+	collisonShape.scale = Vector2(scale_while_dragging, scale_while_dragging)
 
 	drag_state_changed.emit(dragging)
 
