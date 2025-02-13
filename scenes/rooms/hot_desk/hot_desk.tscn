@@ -62,6 +62,4 @@ min_time = 10
 max_time = 60
 
 [node name="Dirty" parent="StateMachine" index="5"]
-texture_on_enter = ExtResource("5_arvva")
-min_time = 2
-max_time = 4
+cleaning_time = 2
