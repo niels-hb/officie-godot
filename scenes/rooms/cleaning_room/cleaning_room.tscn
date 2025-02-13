@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://5htv7inrb55y"]
+
+[ext_resource type="PackedScene" uid="uid://bwsnqhelxuerc" path="res://scenes/rooms/staff_room/staff_room.tscn" id="1_aiblr"]
+[ext_resource type="PackedScene" uid="uid://dvqr68odt8yq6" path="res://scenes/staff/cleaning_staff/cleaning_staff.tscn" id="2_lvdqr"]
+[ext_resource type="Texture2D" uid="uid://cpo3hmfhsact6" path="res://assets/rooms/cleaning_rooms/cleaning_room_1.svg" id="3_mwh6e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mv70"]
+size = Vector2(512, 512)
+
+[node name="CleaningRoom" instance=ExtResource("1_aiblr")]
+staff_preset_scene = ExtResource("2_lvdqr")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_8mv70")
+
+[node name="ColorRect" parent="BuyControls" index="0"]
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+
+[node name="OkButton" parent="BuyControls" index="1"]
+offset_top = 256.0
+offset_bottom = 280.0
+
+[node name="CancelButton" parent="BuyControls" index="2"]
+offset_left = -96.0
+offset_top = 256.0
+offset_right = -72.0
+offset_bottom = 280.0
+
+[node name="Image" parent="." index="2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_mwh6e")
+
+[node name="StateProgressIndicator" parent="." index="3"]
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 1001.0
+offset_bottom = 1001.0
+
+[node name="Building" parent="StateMachine" index="1"]
+texture_on_enter = ExtResource("3_mwh6e")
+min_time = 2
+max_time = 4
