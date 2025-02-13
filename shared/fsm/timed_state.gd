@@ -36,7 +36,7 @@ func enter(_msg: Dictionary = {}) -> void:
 	await timer.timeout
 
 	if next_state_node != null:
-		state_machine.transition_to(next_state_node.name)
+		state_machine.transition_to(next_state_node.name, {"wait_time": wait_time})
 
 
 func update(delta: float) -> void:
