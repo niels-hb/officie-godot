@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv04v0ei7br1t"]
+[gd_scene load_steps=10 format=3 uid="uid://cv04v0ei7br1t"]
 
 [ext_resource type="Script" path="res://scenes/rooms/base_room/base_room.gd" id="1_hityr"]
 [ext_resource type="Texture2D" uid="uid://b73rn0huqgao0" path="res://assets/icons/check.svg" id="2_lhv7j"]
 [ext_resource type="Texture2D" uid="uid://84fmkmc4wmcd" path="res://assets/icons/close.svg" id="3_oq3wp"]
+[ext_resource type="Script" path="res://shared/fsm/state_machine.gd" id="4_x4ccm"]
+[ext_resource type="Script" path="res://scenes/rooms/base_room/states/inactive.gd" id="5_sqyng"]
+[ext_resource type="Script" path="res://shared/fsm/sprite_timed_state.gd" id="7_ewvry"]
+[ext_resource type="Texture2D" uid="uid://dmhvcq8dsasej" path="res://assets/rooms/hot_desks/hot_desk_1_building.png" id="8_e3hwv"]
+[ext_resource type="Texture2D" uid="uid://cun8wk0weipg3" path="res://assets/components/circular_progress_bar.svg" id="8_whj1j"]
+[ext_resource type="Texture2D" uid="uid://328jc0s445me" path="res://assets/rooms/hot_desks/hot_desk_1.png" id="10_puotp"]
 
 [node name="BaseRoom" type="Area2D"]
 script = ExtResource("1_hityr")
@@ -27,7 +33,38 @@ offset_bottom = 24.0
 scale = Vector2(4, 4)
 texture_normal = ExtResource("3_oq3wp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Image" type="Sprite2D" parent="."]
+
+[node name="StateProgressIndicator" type="TextureProgressBar" parent="."]
+visible = false
+offset_right = 1024.0
+offset_bottom = 1024.0
+scale = Vector2(0.045, 0.045)
+step = 0.01
+fill_mode = 4
+texture_under = ExtResource("8_whj1j")
+texture_progress = ExtResource("8_whj1j")
+tint_under = Color(0, 0, 0, 1)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_x4ccm")
+initial_state = NodePath("Inactive")
+
+[node name="Inactive" type="Node" parent="StateMachine"]
+script = ExtResource("5_sqyng")
+
+[node name="Building" type="Node" parent="StateMachine"]
+script = ExtResource("7_ewvry")
+texture_on_enter = ExtResource("8_e3hwv")
+sprite = NodePath("../../Image")
+state_progress_indicator = NodePath("../../StateProgressIndicator")
+next_state = NodePath("../Ready")
+
+[node name="Ready" type="Node" parent="StateMachine"]
+script = ExtResource("7_ewvry")
+texture_on_enter = ExtResource("10_puotp")
+sprite = NodePath("../../Image")
+state_progress_indicator = NodePath("../../StateProgressIndicator")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="pressed" from="BuyControls/OkButton" to="." method="_on_ok_button_pressed"]

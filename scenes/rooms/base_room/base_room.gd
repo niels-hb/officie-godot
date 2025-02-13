@@ -3,12 +3,13 @@ class_name BaseRoom
 
 signal drag_state_changed(dragging: bool)
 
-@onready var collisonShape: CollisionShape2D = $CollisionShape2D
+@onready var collison_shape: CollisionShape2D = $CollisionShape2D
+@onready var image: Sprite2D = $Image
+@onready var buy_controls: Node2D = $BuyControls
+@onready var state_machine: StateMachine = $StateMachine
 
 var office: BaseOffice
 var room: Room
-
-var bought: bool = false
 
 
 func init(_office: BaseOffice, _room: Room) -> BaseRoom:
@@ -19,7 +20,7 @@ func init(_office: BaseOffice, _room: Room) -> BaseRoom:
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if bought:
+	if state_machine.state != $StateMachine/Inactive:
 		return
 
 	if event is InputEventScreenTouch:
@@ -33,8 +34,7 @@ func _on_ok_button_pressed() -> void:
 		return
 
 	GameInformation.money -= room.price
-	bought = true
-	($BuyControls as Node2D).visible = false
+	state_machine.transition_to("Building")
 
 
 func _on_cancel_button_pressed() -> void:
@@ -43,7 +43,7 @@ func _on_cancel_button_pressed() -> void:
 
 func _on_drag_state_changed(dragging: bool) -> void:
 	var scale_while_dragging: float = 4.0 if dragging else 1.0
-	collisonShape.scale = Vector2(scale_while_dragging, scale_while_dragging)
+	collison_shape.scale = Vector2(scale_while_dragging, scale_while_dragging)
 
 	drag_state_changed.emit(dragging)
 
