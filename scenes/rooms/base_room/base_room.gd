@@ -3,13 +3,16 @@ class_name BaseRoom
 
 signal drag_state_changed(dragging: bool)
 
+@export var icon: Texture2D
+@export var human_name: String
+@export var price: int
+
 @onready var collison_shape: CollisionShape2D = $CollisionShape2D
 @onready var image: Sprite2D = $Image
 @onready var state_machine: StateMachine = $StateMachine
 @onready var room_animation_player: AnimationPlayer = $RoomAnimationPlayer
 
 var office: BaseOffice
-var room: Room
 
 var grid_start_position: Vector2i:
 	get:
@@ -26,11 +29,12 @@ var grid_size: Vector2i:
 		return (collison_shape.shape as RectangleShape2D).size / GameInformation.GRID_SIZE
 
 
-func init(_office: BaseOffice, _room: Room) -> BaseRoom:
-	self.office = _office
-	self.room = _room
+func _ready() -> void:
+	assert(icon != null, "icon must not be null.")
+	assert(!human_name.is_empty(), "human_name must not be empty.")
+	assert(price > 0, "price must be greater than 0.")
 
-	return self
+	assert(office != null, "office must be set.")
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

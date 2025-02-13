@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://5htv7inrb55y"]
+[gd_scene load_steps=6 format=3 uid="uid://5htv7inrb55y"]
 
 [ext_resource type="PackedScene" uid="uid://bwsnqhelxuerc" path="res://scenes/rooms/staff_room/staff_room.tscn" id="1_aiblr"]
 [ext_resource type="PackedScene" uid="uid://dvqr68odt8yq6" path="res://scenes/staff/cleaning_staff/cleaning_staff.tscn" id="2_lvdqr"]
+[ext_resource type="Texture2D" uid="uid://cyerrah8l55q1" path="res://assets/icons/icon.svg" id="3_2xd2h"]
 [ext_resource type="Texture2D" uid="uid://cpo3hmfhsact6" path="res://assets/rooms/cleaning_rooms/cleaning_room_1.svg" id="3_mwh6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mv70"]
@@ -9,10 +10,13 @@ size = Vector2(512, 512)
 
 [node name="CleaningRoom" instance=ExtResource("1_aiblr")]
 staff_preset_scene = ExtResource("2_lvdqr")
+maintenance_per_day = 2
+icon = ExtResource("3_2xd2h")
+human_name = "Cleaning Room"
+price = 5
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_8mv70")
-
 
 [node name="Image" parent="." index="2"]
 scale = Vector2(0.5, 0.5)

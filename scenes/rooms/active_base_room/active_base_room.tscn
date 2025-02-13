@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnj85wi0hskql"]
+[gd_scene load_steps=7 format=3 uid="uid://cnj85wi0hskql"]
 
 [ext_resource type="PackedScene" uid="uid://cv04v0ei7br1t" path="res://scenes/rooms/base_room/base_room.tscn" id="1_4cn17"]
+[ext_resource type="Script" path="res://scenes/rooms/active_base_room/active_base_room.gd" id="2_r6w7o"]
 [ext_resource type="Texture2D" uid="uid://b0f7ugqaq03ex" path="res://assets/icons/money.svg" id="3_te5rl"]
 [ext_resource type="Script" path="res://scenes/rooms/active_base_room/states/collectable.gd" id="5_cgv16"]
 [ext_resource type="Script" path="res://scenes/rooms/active_base_room/states/dirty.gd" id="5_ptfy5"]
 [ext_resource type="Script" path="res://shared/fsm/sprite_timed_state.gd" id="6_u5t22"]
 
 [node name="ActiveBaseRoom" instance=ExtResource("1_4cn17")]
+script = ExtResource("2_r6w7o")
 
 [node name="CollectMoneyButton" type="TextureButton" parent="." index="3"]
 visible = false

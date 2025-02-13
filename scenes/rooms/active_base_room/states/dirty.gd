@@ -1,4 +1,5 @@
 extends State
+class_name Dirty
 
 @export_range(0, 100, 1) var cleaning_time: int
 
