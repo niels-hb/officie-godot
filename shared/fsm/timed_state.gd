@@ -28,7 +28,7 @@ func enter(_msg: Dictionary = {}) -> void:
 	_state_progress_indicator_node.visible = true
 
 	wait_time = min_time + randf() * (max_time - min_time)
-	print("Waiting for %f seconds." % wait_time)
+	print("[%s] Waiting for %f (%f <= x <= %f) seconds." % [name, wait_time, min_time, max_time])
 	timer = get_tree().create_timer(wait_time)
 
 	_state_progress_indicator_node.max_value = wait_time
