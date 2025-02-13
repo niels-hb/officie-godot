@@ -14,3 +14,7 @@ func update(_delta: float) -> void:
 
 func exit() -> void:
 	pass
+
+
+func _to_string() -> String:
+	return name
