@@ -2,6 +2,7 @@ extends Node2D
 class_name BaseOffice
 
 @onready var camera: GestureControlledCamera2D = $Camera
+@onready var tile_map: TileMap = $Grid/TileMap
 
 
 func _on_room_selector_room_selected(room: Room) -> void:
