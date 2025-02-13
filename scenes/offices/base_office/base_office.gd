@@ -61,6 +61,24 @@ func is_floor_covering_area(area_position: Vector2i, area_size: Vector2i) -> boo
 	)
 
 
+func is_room_overlapping_existing_room(new_room: BaseRoom) -> bool:
+	for existing_room: BaseRoom in ($Grid/Rooms as Node2D).get_children():
+		if existing_room == new_room:
+			continue
+
+		assert(existing_room is BaseRoom)
+
+		if _is_overlapping(
+			existing_room.grid_position,
+			existing_room.grid_position + existing_room.grid_size,
+			new_room.grid_position,
+			new_room.grid_position + new_room.grid_size,
+		):
+			return true
+
+	return false
+
+
 func get_tiles_in_area(layers: Array, area_position: Vector2i, area_size: Vector2i) -> Array:
 	var tiles: Array = []
 
@@ -74,3 +92,7 @@ func get_tiles_in_area(layers: Array, area_position: Vector2i, area_size: Vector
 
 func _filter_null_values(value: Variant) -> bool:
 	return value != null
+
+
+func _is_overlapping(l1: Vector2, r1: Vector2, l2: Vector2, r2: Vector2) -> bool:
+	return l1.x <= r2.x and r1.x >= l2.x and l1.y <= r2.y and r1.y >= l2.y

@@ -79,4 +79,5 @@ func _validate_position() -> bool:
 	return (
 		office.is_floor_covering_area(grid_position, grid_size)
 		and !office.is_blocking_tile_within_area(grid_position, grid_size)
+		and !office.is_room_overlapping_existing_room(self)
 	)
