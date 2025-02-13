@@ -1,4 +1,5 @@
 *.afdesign~lock~
+*.drawio.bkp
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,godot
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,godot
