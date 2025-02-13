@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvqr68odt8yq6"]
+
+[ext_resource type="PackedScene" uid="uid://ciwnumcsg8yv2" path="res://scenes/staff/base_staff/base_staff.tscn" id="1_bhkp0"]
+
+[node name="CleaningStaff" instance=ExtResource("1_bhkp0")]
+assignable_states = Array[String](["Dirty"])
