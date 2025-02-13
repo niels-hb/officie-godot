@@ -11,6 +11,8 @@ const TILEMAP_CDL_BLOCKING: String = "blocking"
 
 @export var draw_debug_cells: bool = false
 
+@onready var rooms: Node2D = $Grid/Rooms
+
 
 func _ready() -> void:
 	if draw_debug_cells:
