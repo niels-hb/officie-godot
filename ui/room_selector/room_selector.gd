@@ -1,16 +1,14 @@
 extends CanvasLayer
+class_name RoomSelector
 
-var room_icon_scene: PackedScene = preload("res://ui/room_selector/room_icon.tscn")
+signal room_selected(room: BaseRoom)
 
-signal room_selected(room: Room)
-
-
-func _ready() -> void:
-	for room: Room in RoomConfiguration.available_rooms:
-		var room_icon: RoomIcon = (room_icon_scene.instantiate() as RoomIcon).init(room)
-		var _connect_result: int = room_icon.selected.connect(_on_room_selected)
-		$Background/ScrollContainer/MarginContainer/AvailableRooms.add_child(room_icon)
+signal closed
 
 
-func _on_room_selected(room: Room) -> void:
+func _on_room_selected(room: BaseRoom) -> void:
 	room_selected.emit(room)
+
+
+func _on_close_button_pressed() -> void:
+	closed.emit()

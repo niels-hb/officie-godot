@@ -1,0 +1,164 @@
+[gd_scene load_steps=3 format=3 uid="uid://d21156dv40h4p"]
+
+[ext_resource type="Texture2D" uid="uid://cyerrah8l55q1" path="res://assets/icons/icon.svg" id="1_g4o40"]
+[ext_resource type="Script" path="res://ui/room_selector/room_details.gd" id="1_taeoo"]
+
+[node name="RoomDetails" type="Control"]
+custom_minimum_size = Vector2(768, 288)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 256.0
+mouse_filter = 2
+script = ExtResource("1_taeoo")
+
+[node name="BuyButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -26.5
+offset_bottom = 26.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "BUY"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_g4o40")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Name" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "NAME"
+
+[node name="GeneralInformation" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Price" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/GeneralInformation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/GeneralInformation/Price"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Price"
+
+[node name="Value" type="Label" parent="HBoxContainer/VBoxContainer/GeneralInformation/Price"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "$X"
+
+[node name="Income" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/GeneralInformation"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/GeneralInformation/Income"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Income"
+
+[node name="Value" type="Label" parent="HBoxContainer/VBoxContainer/GeneralInformation/Income"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "$X/day"
+
+[node name="Maintenance" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/GeneralInformation"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/GeneralInformation/Maintenance"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Maintenance"
+
+[node name="Value" type="Label" parent="HBoxContainer/VBoxContainer/GeneralInformation/Maintenance"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "$X/day"
+
+[node name="TimingHeader" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Timing"
+
+[node name="TimingInformation" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Building" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/TimingInformation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/TimingInformation/Building"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Building"
+
+[node name="Value" type="Label" parent="HBoxContainer/VBoxContainer/TimingInformation/Building"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "X-Y days"
+
+[node name="Waiting" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/TimingInformation"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/TimingInformation/Waiting"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Waiting"
+
+[node name="Value" type="Label" parent="HBoxContainer/VBoxContainer/TimingInformation/Waiting"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "X-Y days"
+
+[node name="Occupied" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/TimingInformation"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/TimingInformation/Occupied"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Occupied"
+
+[node name="Value" type="Label" parent="HBoxContainer/VBoxContainer/TimingInformation/Occupied"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "X-Y days"
+
+[node name="Cleaning" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/TimingInformation"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/TimingInformation/Cleaning"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Cleaning"
+
+[node name="Value" type="Label" parent="HBoxContainer/VBoxContainer/TimingInformation/Cleaning"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "X-Y days"
+
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
