@@ -18,6 +18,8 @@ config/icon="res://assets/icons/icon.svg"
 [autoload]
 
 InputManager="*res://addons/GodotTouchInputManager/InputManager.gd"
+RoomConfiguration="*res://static_config/room_configuration/room_configuration.gd"
+GameInformation="*res://player/game_information.gd"
 
 [debug]
 
