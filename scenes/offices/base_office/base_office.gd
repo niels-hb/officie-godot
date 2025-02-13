@@ -47,6 +47,18 @@ func _toggle_camera_movement(disabled: bool) -> void:
 	)
 
 
+func validate_room_position(room: BaseRoom) -> bool:
+	if draw_debug_cells:
+		print("Grid Position: %s - %s" % [room.grid_start_position, room.grid_end_position])
+		print("Grid Size: %s" % room.grid_size)
+
+	return (
+		is_floor_covering_area(room.grid_start_position, room.grid_size)
+		and !is_blocking_tile_within_area(room.grid_start_position, room.grid_size)
+		and !is_room_overlapping_existing_room(room)
+	)
+
+
 func is_blocking_tile_within_area(area_position: Vector2i, area_size: Vector2i) -> bool:
 	return (
 		(

@@ -62,15 +62,3 @@ func _on_dragging() -> void:
 	)
 
 	global_position = global_mouse_position - snap_to_grid_offset
-
-
-func _validate_position() -> bool:
-	if office.draw_debug_cells:
-		print("Grid Position: %s - %s" % [grid_start_position, grid_end_position])
-		print("Grid Size: %s" % grid_size)
-
-	return (
-		office.is_floor_covering_area(grid_start_position, grid_size)
-		and !office.is_blocking_tile_within_area(grid_start_position, grid_size)
-		and !office.is_room_overlapping_existing_room(self)
-	)
