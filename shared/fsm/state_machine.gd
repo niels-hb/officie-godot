@@ -11,8 +11,10 @@ func _ready() -> void:
 	assert(!initial_state.is_empty())
 	assert(state != null)
 
-	await owner.ready
+	call_deferred("_state_setup")
 
+
+func _state_setup() -> void:
 	for child: State in get_children():
 		child.state_machine = self
 
