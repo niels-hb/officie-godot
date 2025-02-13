@@ -1,4 +1,5 @@
 extends Camera2D
+class_name GestureControlledCamera2D
 
 # Configuration
 @export var MAX_ZOOM: float = 4
