@@ -40,7 +40,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 
 func _on_ok_button_pressed() -> void:
-	if !_validate_position() || GameInformation.money < room.price:
+	if !_validate_position() or GameInformation.money < room.price:
 		return
 
 	GameInformation.money -= room.price
@@ -75,5 +75,5 @@ func _on_dragging() -> void:
 func _validate_position() -> bool:
 	return (
 		office.is_floor_covering_area(grid_position, grid_size)
-		&& !office.is_blocking_tile_within_area(grid_position, grid_size)
+		and !office.is_blocking_tile_within_area(grid_position, grid_size)
 	)
